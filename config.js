@@ -5,42 +5,46 @@
 const CONFIG = {
   // Names
   crushName: "Shreyaaa",
-  yourName: "Yours Truly", // Change to your actual name or nickname if desired
+  yourName: "Yours Truly",
   subtitle: "A special message, straight from the heart ✨",
 
-  // 1. Time Tracking: Date when you realized your feelings or met
-  // Format: "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM:SS"
-  startDate: "2025-09-29T00:00:00", 
-  counterTitle: "Time Since You Stole My Heart ❤️",
+  // 1. Time Tracking: Date when you first met
+  startDate: "2021-07-07T00:00:00", 
+  counterTitle: "Time Since We First Met ❤️ (07/07/2021)",
 
   // 2. Envelope & Confession Letter
   envelopeTitle: "To: Shreyaaa 💌",
   envelopeHint: "Tap the wax seal to open",
   letterGreeting: "Dear Shreyaaa,",
   letterParagraphs: [
-    "I've been wanting to share something special with you for a while now. Every time I see you, talk to you, or hear your voice, I'm reminded of just how unique and wonderful you are.",
-    "You have this effortless charm about you—your warmth, your genuine laughter, and the way you bring light into every conversation. It never fails to make my day infinitely brighter.",
-    "Somewhere along the way, I realized my heart had made up its mind. You aren't just someone I admire; you're the person I find myself looking for and thinking of every single day.",
-    "Life is just so much sweeter, brighter, and more meaningful with you in it. And today, I wanted to let you know how much you truly mean to me."
+    "Ever since July 7, 2021, the day we first met, my life has been so much sweeter, brighter, and more meaningful because of you.",
+    "Every time I see you, talk to you, or hear your laugh, I'm reminded of just how unique and wonderful you are. You have this effortless charm—your warmth, your genuine laughter, and the way you bring light into every moment.",
+    "Somewhere along our journey, I realized my heart had made up its mind. You aren't just someone I admire; you're the person I find myself looking for and thinking of every single day.",
+    "Today, I wanted to share these feelings with you and create something special just for you, Shreyaaa."
   ],
 
-  // 3. Polaroid Memory Gallery
-  polaroidsTitle: "Moments & Little Memories 📸",
+  // 3. Polaroid Memory Gallery (With your real photos!)
+  polaroidsTitle: "Moments & Memories 📸",
   polaroids: [
     {
-      image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80",
-      caption: "That unforgettable smile ✨",
-      date: "A precious moment"
+      image: "photos/photo1.jpg",
+      caption: "Together Forever ❤️",
+      date: "07/07/2021 - First Meet"
     },
     {
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
-      caption: "Endless laughs & happiness 🌸",
-      date: "Pure joy"
+      image: "photos/photo2.jpg",
+      caption: "That Cute Smile 🌸",
+      date: "Precious Moment"
     },
     {
-      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80",
-      caption: "The start of something special 💫",
-      date: "Forever in my mind"
+      image: "photos/photo3.jpg",
+      caption: "Simply Beautiful ✨",
+      date: "Pure Happiness"
+    },
+    {
+      image: "photos/photo4.jpg",
+      caption: "My Favorite Person 💕",
+      date: "Always & Forever"
     }
   ],
 
@@ -116,7 +120,7 @@ const CONFIG = {
 
   // 7. Plan Our First Date (After YES)
   datePlanner: {
-    title: "Now... Let's Plan Our Dream First Date! 🎟️",
+    title: "Now... Let's Plan Our Dream Date! 🎟️",
     subtitle: "Pick what sounds most fun to you:",
     activities: [
       { id: "coffee", icon: "☕", title: "Cozy Coffee & Deep Talks", desc: "Warm lattes, cozy couch, endless chats" },
