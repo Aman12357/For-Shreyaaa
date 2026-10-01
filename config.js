@@ -104,7 +104,7 @@ const CONFIG = {
 
   // 6. Proposal Section
   proposal: {
-    question: "Shreyaaa, will you be mine?",
+    question: "Shreyaaa, will you spend the rest of your life with me?",
     yesBtn: "YES! 🥰",
     noBtn: "No 🙈",
     noMessages: [
@@ -120,7 +120,7 @@ const CONFIG = {
 
   // 7. Plan Our First Date (After YES)
   datePlanner: {
-    title: "Now... Let's Plan Our Dream Date! 🎟️",
+    title: "Now... Let's Plan Another Unforgettable Day Together! 🎟️",
     subtitle: "Pick what sounds most fun to you:",
     activities: [
       { id: "coffee", icon: "☕", title: "Cozy Coffee & Deep Talks", desc: "Warm lattes, cozy couch, endless chats" },
