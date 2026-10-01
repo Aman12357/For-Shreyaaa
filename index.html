@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>For Shreyaaa ❤️ | A Special Surprise</title>
+  
+  <!-- Romantic Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Canvas Elements -->
+  <canvas id="ambientCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Audio Controls Bar with Vinyl Player -->
+  <div class="audio-controls-bar">
+    <div class="vinyl-widget" id="vinylWidget" title="Romantic Vinyl Player">
+      <div class="vinyl-grooves"></div>
+      <div class="vinyl-center"></div>
+    </div>
+    <button id="audioToggle" class="audio-toggle" title="Toggle Soft Ambient Music" aria-label="Toggle Romantic Music">
+      <span class="music-icon">🎵</span>
+      <span id="musicStatus">Music: Off 🔇</span>
+    </button>
+  </div>
+
+  <!-- Top Romantic Header -->
+  <header class="romantic-header">
+    <h1 class="glow-title" id="mainTitle">For Shreyaaa ❤️</h1>
+    <p class="subtitle" id="subTitle">A special message, straight from the heart ✨</p>
+  </header>
+
+  <!-- Main Container -->
+  <main class="stage-container">
+    
+    <!-- STAGE 1: 3D Wax-Sealed Envelope -->
+    <section class="envelope-section" id="envelopeSection">
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="flap-top"></div>
+          <div class="pocket-left"></div>
+          <div class="pocket-right"></div>
+          <div class="pocket-bottom"></div>
+          
+          <div class="letter-peek" id="letterPeek">
+            <span id="letterPeekTo">To: Shreyaaa 💌</span>
+          </div>
+
+          <!-- Clickable Wax Seal -->
+          <div class="wax-seal" id="waxSeal" title="Click to open the letter">
+            <span class="seal-icon">❤️</span>
+          </div>
+        </div>
+      </div>
+      <div class="envelope-instruction" id="envelopeHint">
+        <span>💌</span> Tap the wax seal to open
+      </div>
+    </section>
+
+    <!-- STAGE 2: Confession Letter Modal with Typewriter Animation -->
+    <section class="letter-section" id="letterSection">
+      <div class="letter-decor-top">
+        <span class="stamp">💌</span>
+        <span class="date-text" id="letterDate"></span>
+      </div>
+
+      <h2 class="greeting-text" id="letterGreeting">Dear Shreyaaa,</h2>
+      
+      <div class="typewriter-content" id="typewriterContent"></div>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+        <button class="skip-btn" id="skipTypewriter">Skip to end ⏩</button>
+        <button class="continue-btn" id="continueToExperience" style="display: none;">
+          Continue Reading ✨ <span>↓</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE FLOW (Revealed after letter) -->
+    <div class="experience-flow" id="experienceFlow">
+
+      <!-- STAGE 3: Live Love Counter -->
+      <section class="counter-section" id="counterSection">
+        <div class="counter-container">
+          <h3 class="section-subtitle" id="counterTitle" style="margin-bottom: 0;">Time Since You Stole My Heart ❤️</h3>
+          <div class="counter-grid">
+            <div class="counter-box">
+              <span class="counter-number" id="countDays">0</span>
+              <span class="counter-label">Days</span>
+            </div>
+            <div class="counter-box">
+              <span class="counter-number" id="countHours">0</span>
+              <span class="counter-label">Hours</span>
+            </div>
+            <div class="counter-box">
+              <span class="counter-number" id="countMins">0</span>
+              <span class="counter-label">Minutes</span>
+            </div>
+            <div class="counter-box">
+              <span class="counter-number" id="countSecs">0</span>
+              <span class="counter-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STAGE 4: Polaroid Memory Gallery -->
+      <section class="polaroids-section" id="polaroidsSection">
+        <h3 class="section-subtitle" id="polaroidsTitle">Moments & Little Memories 📸</h3>
+        <div class="polaroids-grid" id="polaroidsGrid">
+          <!-- Injected via JavaScript from CONFIG -->
+        </div>
+      </section>
+
+      <!-- STAGE 5: Reasons Why You're Special Cards -->
+      <section class="reasons-section" id="reasonsSection">
+        <h3 class="section-subtitle" id="reasonsTitle">A Few Reasons Why You're Unforgettable</h3>
+        <div class="reasons-grid" id="reasonsGrid">
+          <!-- Injected via JavaScript from CONFIG -->
+        </div>
+      </section>
+
+      <!-- STAGE 6: The Shreyaaa Mini-Quiz -->
+      <section class="quiz-section" id="quizSection">
+        <span class="quiz-progress" id="quizProgress">Question 1 of 3</span>
+        <h3 class="section-subtitle" id="quizTitle" style="margin-bottom: 5px;">The Shreyaaa Mini-Quiz 🎮</h3>
+        <p style="color: var(--rose-gold); font-size: 0.95rem; margin-bottom: 20px;" id="quizSubtitle">
+          Answer these 3 quick questions to see how well our hearts match!
+        </p>
+
+        <div class="quiz-question-box">
+          <div class="quiz-q-text" id="quizQuestionText">Loading question...</div>
+          <div class="quiz-options-list" id="quizOptionsList"></div>
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+      </section>
+
+      <!-- STAGE 7: Proposal Section (Runaway No & Glowing YES) -->
+      <section class="proposal-section" id="proposalSection">
+        <h2 class="proposal-question" id="proposalQuestion">Shreyaaa, will you be mine?</h2>
+        <p class="proposal-sub">Choose carefully 😉</p>
+        
+        <div class="buttons-arena">
+          <button class="btn-yes" id="btnYes">YES! 🥰</button>
+          <button class="btn-no" id="btnNo">No 🙈</button>
+        </div>
+
+        <div class="tease-message" id="teaseMessage"></div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- STAGE 8: Celebration Overlay with Date Planner & Golden Ticket -->
+  <div class="celebration-overlay" id="celebrationOverlay">
+    <div class="celebration-card">
+      <div class="celebration-icon">💖✨🎉</div>
+      <h2 class="celebration-title" id="celebrationTitle">YAY! You Made My Entire Universe! 🎉💖</h2>
+      <p class="celebration-text" id="celebrationText">
+        This is the happiest moment ever! Shreyaaa, I promise to always cherish you, make you laugh, and be there for you through everything.
+      </p>
+      <div class="celebration-signature" id="celebrationSignature">Forever with all my love ❤️</div>
+
+      <!-- Plan Our First Date Interactive Widget -->
+      <div class="date-planner-box" id="datePlannerBox">
+        <h3 style="font-family: var(--font-heading); color: #fcd34d; font-size: 1.4rem;">
+          Now... Let's Plan Our Dream First Date! 🎟️
+        </h3>
+        <p style="font-size: 0.95rem; color: #ffdbe4; margin-top: 5px;">
+          Pick the adventure that sounds most fun to you:
+        </p>
+
+        <div class="date-activities-grid" id="dateActivitiesGrid">
+          <!-- Populated from CONFIG -->
+        </div>
+
+        <div class="date-input-group">
+          <label for="chosenDateInput">Pick a special day:</label>
+          <input type="date" id="chosenDateInput" class="romantic-date-input">
+        </div>
+
+        <button class="btn-generate-ticket" id="btnGenerateTicket">
+          ✨ Claim Our Official Date Ticket ✨
+        </button>
+
+        <!-- Golden Boarding Pass / Ticket Result -->
+        <div class="ticket-wrapper" id="ticketWrapper">
+          <div class="golden-ticket" id="goldenTicketDisplay">
+            <div class="ticket-header">
+              <span class="ticket-brand">GOLDEN PASS ✦ VIP</span>
+              <span class="ticket-type">FIRST DATE VOUCHER</span>
+            </div>
+            <div class="ticket-body">
+              <div>
+                <div class="ticket-field">
+                  <div class="ticket-field-label">Passengers</div>
+                  <div class="ticket-field-val" id="ticketPassengers">Shreyaaa & Secret Admirer</div>
+                </div>
+                <div class="ticket-field">
+                  <div class="ticket-field-label">Destination / Date Activity</div>
+                  <div class="ticket-field-val" id="ticketActivity">Cozy Coffee & Deep Talks ☕</div>
+                </div>
+                <div class="ticket-field">
+                  <div class="ticket-field-label">Valid Date</div>
+                  <div class="ticket-field-val" id="ticketDateText">Anytime You Want!</div>
+                </div>
+              </div>
+              <div class="ticket-barcode">
+                <div class="barcode-lines">||| | | |||| | |||</div>
+                <div style="font-size: 0.7rem; color: #fcd34d; margin-top: 6px; letter-spacing: 1px;">
+                  VALID FOR UNLIMITED HUGS & SMILES
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-download-ticket" id="btnDownloadTicket">
+            📥 Save Ticket to Gallery (PNG)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Canvas for Golden Ticket PNG Export -->
+  <canvas id="ticketExportCanvas" width="900" height="420" style="display: none;"></canvas>
+
+  <!-- Scripts -->
+  <script src="config.js?v=1"></script>
+  <script src="script.js?v=1"></script>
+</body>
+</html>
