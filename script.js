@@ -3,6 +3,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 0. Parse Custom Data from URL (if shared)
+  checkURLParamsForConfig();
+
   // 1. Dynamic Contents Setup
   setupContentFromConfig();
 
@@ -27,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 8. Date Planner & Golden Ticket Generator
   setupDatePlanner();
+
+  // 9. Builder Modal & ZIP Generator
+  setupBuilderModal();
 });
 
 /* =========================================================================
@@ -850,4 +856,179 @@ function startContinuousCelebration() {
   burstConfetti(w * 0.2, h * 0.4, 60);
   burstConfetti(w * 0.8, h * 0.4, 60);
   burstConfetti(w * 0.5, h * 0.3, 80);
+}
+
+/* =========================================================================
+   10. Builder Modal, URL Share Parameter & ZIP Exporter
+   ========================================================================= */
+function checkURLParamsForConfig() {
+  const params = new URLSearchParams(window.location.search);
+  const encodedData = params.get("d") || params.get("data");
+
+  if (encodedData) {
+    try {
+      const decoded = JSON.parse(decodeURIComponent(atob(encodedData)));
+      if (decoded.c) CONFIG.crushName = decoded.c;
+      if (decoded.y) CONFIG.yourName = decoded.y;
+      if (decoded.d) CONFIG.startDate = decoded.d;
+      if (decoded.p) CONFIG.proposal.question = decoded.p;
+      if (decoded.l && Array.isArray(decoded.l)) CONFIG.letterParagraphs = decoded.l;
+
+      // Update titles
+      CONFIG.envelopeTitle = `To: ${CONFIG.crushName} 💌`;
+      CONFIG.letterGreeting = `Dear ${CONFIG.crushName},`;
+    } catch (e) {
+      console.error("Failed to decode custom URL data:", e);
+    }
+  }
+}
+
+function setupBuilderModal() {
+  const openBtn = document.getElementById("openBuilderBtn");
+  const closeBtn = document.getElementById("closeBuilderBtn");
+  const modal = document.getElementById("builderModal");
+
+  const inputCrushName = document.getElementById("inputCrushName");
+  const inputYourName = document.getElementById("inputYourName");
+  const inputStartDate = document.getElementById("inputStartDate");
+  const inputProposal = document.getElementById("inputProposal");
+  const inputLetterText = document.getElementById("inputLetterText");
+
+  const btnCopyShareLink = document.getElementById("btnCopyShareLink");
+  const btnDownloadZip = document.getElementById("btnDownloadZip");
+
+  if (!openBtn || !modal) return;
+
+  // Populate initial values
+  if (inputCrushName) inputCrushName.value = CONFIG.crushName || "";
+  if (inputYourName) inputYourName.value = CONFIG.yourName || "";
+  if (inputStartDate && CONFIG.startDate) {
+    inputStartDate.value = CONFIG.startDate.split("T")[0];
+  }
+  if (inputProposal) inputProposal.value = CONFIG.proposal.question || "";
+  if (inputLetterText && CONFIG.letterParagraphs) {
+    inputLetterText.value = CONFIG.letterParagraphs.join("\n");
+  }
+
+  // Open & Close
+  openBtn.addEventListener("click", () => modal.style.display = "flex");
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+  // Reactive updates on input
+  function applyInputsToConfig() {
+    if (inputCrushName.value.trim()) {
+      CONFIG.crushName = inputCrushName.value.trim();
+      CONFIG.envelopeTitle = `To: ${CONFIG.crushName} 💌`;
+      CONFIG.letterGreeting = `Dear ${CONFIG.crushName},`;
+    }
+    if (inputYourName.value.trim()) CONFIG.yourName = inputYourName.value.trim();
+    if (inputStartDate.value) CONFIG.startDate = `${inputStartDate.value}T00:00:00`;
+    if (inputProposal.value.trim()) CONFIG.proposal.question = inputProposal.value.trim();
+    if (inputLetterText.value.trim()) {
+      CONFIG.letterParagraphs = inputLetterText.value.split("\n").filter(p => p.trim() !== "");
+    }
+
+    // Refresh display
+    setupContentFromConfig();
+    initLoveCounter();
+  }
+
+  [inputCrushName, inputYourName, inputStartDate, inputProposal, inputLetterText].forEach(el => {
+    if (el) el.addEventListener("input", applyInputsToConfig);
+  });
+
+  // Copy Shareable Link Action
+  if (btnCopyShareLink) {
+    btnCopyShareLink.addEventListener("click", () => {
+      applyInputsToConfig();
+
+      const payload = {
+        c: CONFIG.crushName,
+        y: CONFIG.yourName,
+        d: CONFIG.startDate,
+        p: CONFIG.proposal.question,
+        l: CONFIG.letterParagraphs
+      };
+
+      const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+      const baseUrl = window.location.origin + window.location.pathname;
+      const shareUrl = `${baseUrl}?d=${encoded}`;
+
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showToast("Shareable link copied to clipboard! 📋✨");
+      }).catch(err => {
+        showToast("Link created! Copy from browser address bar.");
+      });
+    });
+  }
+
+  // Download ZIP Action
+  if (btnDownloadZip) {
+    btnDownloadZip.addEventListener("click", () => {
+      applyInputsToConfig();
+      exportCustomSiteZip();
+    });
+  }
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toastNotification");
+  if (!toast) return;
+  toast.innerText = message;
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3500);
+}
+
+function exportCustomSiteZip() {
+  if (typeof JSZip === "undefined") {
+    alert("ZIP library loading. Please try again in 2 seconds!");
+    return;
+  }
+
+  const zip = new JSZip();
+
+  // 1. Generate customized config.js string
+  const customConfigStr = `/**
+ * Configuration file generated for ${CONFIG.crushName}'s Confession Website
+ */
+const CONFIG = ${JSON.stringify(CONFIG, null, 2)};
+`;
+
+  // 2. Fetch current HTML, CSS, JS
+  const indexHtml = document.documentElement.outerHTML;
+
+  // Add files to zip
+  zip.file("config.js", customConfigStr);
+  zip.file("index.html", "<!DOCTYPE html>\n" + indexHtml);
+
+  // Fetch local style.css and script.js if possible or prompt download
+  fetch("style.css").then(res => res.text()).then(css => {
+    zip.file("style.css", css);
+    return fetch("script.js").then(res => res.text());
+  }).then(js => {
+    zip.file("script.js", js);
+
+    // Generate zip and trigger download
+    zip.generateAsync({ type: "blob" }).then(content => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(content);
+      a.download = `confession-site-for-${CONFIG.crushName.toLowerCase()}.zip`;
+      a.click();
+      showToast("Custom website package downloaded! 📥✨");
+    });
+  }).catch(err => {
+    // Fallback if fetch fails
+    zip.generateAsync({ type: "blob" }).then(content => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(content);
+      a.download = `confession-site-for-${CONFIG.crushName.toLowerCase()}.zip`;
+      a.click();
+      showToast("Custom website package downloaded! 📥✨");
+    });
+  });
 }

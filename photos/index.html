@@ -10,9 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
   
-  <!-- JSZip for 1-click Custom Website Export -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,11 +18,8 @@
   <canvas id="ambientCanvas"></canvas>
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Audio & Builder Controls Bar -->
+  <!-- Audio Controls Bar with Vinyl Player -->
   <div class="audio-controls-bar">
-    <button id="openBuilderBtn" class="builder-toggle-btn" title="Create a customized site for your crush">
-      <span>✨</span> Create Yours
-    </button>
     <div class="vinyl-widget" id="vinylWidget" title="Romantic Vinyl Player">
       <div class="vinyl-grooves"></div>
       <div class="vinyl-center"></div>
@@ -132,10 +126,10 @@
         </div>
       </section>
 
-      <!-- STAGE 6: Mini-Quiz -->
+      <!-- STAGE 6: The Shreyaaa Mini-Quiz -->
       <section class="quiz-section" id="quizSection">
         <span class="quiz-progress" id="quizProgress">Question 1 of 3</span>
-        <h3 class="section-subtitle" id="quizTitle" style="margin-bottom: 5px;">The Love Mini-Quiz 🎮</h3>
+        <h3 class="section-subtitle" id="quizTitle" style="margin-bottom: 5px;">The Shreyaaa Mini-Quiz 🎮</h3>
         <p style="color: var(--rose-gold); font-size: 0.95rem; margin-bottom: 20px;" id="quizSubtitle">
           Answer these 3 quick questions to see how well our hearts match!
         </p>
@@ -235,64 +229,11 @@
     </div>
   </div>
 
-  <!-- BUILDER MODAL: Interactive Customizer for Users -->
-  <div class="builder-modal" id="builderModal">
-    <div class="builder-modal-card">
-      <button class="builder-close-btn" id="closeBuilderBtn">&times;</button>
-      
-      <div class="builder-header">
-        <h2>✨ Create a Website for Your Crush</h2>
-        <p>Enter your details below to generate a live custom site & shareable link!</p>
-      </div>
-
-      <form id="builderForm" class="builder-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="inputCrushName">Crush / Partner's Name 💕</label>
-            <input type="text" id="inputCrushName" placeholder="e.g. Shreyaaa, Aleena, Ananya" required>
-          </div>
-          <div class="form-group">
-            <label for="inputYourName">Your Name / Nickname 💌</label>
-            <input type="text" id="inputYourName" placeholder="e.g. Aman, Yours Truly" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="inputStartDate">Special Date (First Met / Together) 📅</label>
-            <input type="date" id="inputStartDate" required>
-          </div>
-          <div class="form-group">
-            <label for="inputProposal">Proposal Question 💍</label>
-            <input type="text" id="inputProposal" placeholder="e.g. Will you spend the rest of your life with me?">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputLetterText">Confession Letter (Paragraphs separated by new lines) 📜</label>
-          <textarea id="inputLetterText" rows="4" placeholder="Write your heartfelt message here..."></textarea>
-        </div>
-
-        <div class="builder-actions">
-          <button type="button" class="btn-builder-action btn-copy-link" id="btnCopyShareLink">
-            🔗 Copy Shareable Link
-          </button>
-          <button type="button" class="btn-builder-action btn-download-zip" id="btnDownloadZip">
-            📦 Download Custom Website (ZIP)
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Copy Notification Toast -->
-  <div class="toast-notification" id="toastNotification">Link copied to clipboard! 📋✨</div>
-
   <!-- Hidden Canvas for Golden Ticket PNG Export -->
   <canvas id="ticketExportCanvas" width="900" height="420" style="display: none;"></canvas>
 
   <!-- Scripts -->
-  <script src="config.js?v=20"></script>
-  <script src="script.js?v=20"></script>
+  <script src="config.js?v=10"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
